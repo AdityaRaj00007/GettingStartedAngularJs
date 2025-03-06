@@ -14,7 +14,8 @@ export class AppComponent {
   title = 'Hello World';
   imgUrl = "../assets/logo.jpg";
   url = "https://www.bridgelabz.com";
-  userName: string = "Aditya";
+  userName: string = "";
+  errorMessage: string = "";
 
   ngOnInit(): void {
     this.title = "Hello from BridgeLabz";
@@ -23,5 +24,14 @@ export class AppComponent {
   onClick(event: Event): void {
     console.log('BridgeLabz logo clicked!', event);
     window.open(this.url, '_blank'); 
+  }
+
+  validateName(): void {
+    const namePattern = /^[A-Z][a-zA-Z]{2,}$/;
+    if (!this.userName.match(namePattern)) {
+      this.errorMessage = "Name must start with an uppercase letter and be at least 3 characters long.";
+    } else {
+      this.errorMessage = "";
+    }
   }
 }
